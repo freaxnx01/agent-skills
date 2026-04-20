@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "agent-skills",
+  "description": "Public Claude Code plugin marketplace by freaxnx01 — sharable, non-personal skills.",
+  "owner": {
+    "name": "freaxnx01"
+  },
+  "plugins": [
+    {
+      "name": "sync-ai-instructions",
+      "description": "Initialize or update a project's AI agent instruction files (CLAUDE.md, .github/copilot-instructions.md, SKILL.md, .ai/*) by pulling base + one stack overlay from github.com/freaxnx01/ai-instructions. Idempotent — works for first-time setup and re-runs to keep files in sync.",
+      "source": "./plugins/sync-ai-instructions"
+    }
+  ]
+}
