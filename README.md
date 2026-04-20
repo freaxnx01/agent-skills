@@ -2,7 +2,7 @@
 
 Public Claude Code plugin marketplace by [freaxnx01](https://github.com/freaxnx01) — sharable, non-personal skills.
 
-Marketplace name inside `.claude-plugin/marketplace.json`: **`agent-skills`** — use this suffix when installing or updating plugins.
+Marketplace name inside `.claude-plugin/marketplace.json`: **`freax-agent-skills`** — use this suffix when installing or updating plugins. (The plain name `agent-skills` is reserved by Anthropic for their official marketplaces.)
 
 ## Plugins
 
@@ -14,15 +14,15 @@ Marketplace name inside `.claude-plugin/marketplace.json`: **`agent-skills`** �
 
 ```bash
 /plugin marketplace add freaxnx01/agent-skills
-/plugin install sync-ai-instructions@agent-skills
+/plugin install sync-ai-instructions@freax-agent-skills
 /reload-plugins
 ```
 
 ## Update
 
 ```bash
-/plugin marketplace update agent-skills
-/plugin update sync-ai-instructions@agent-skills
+/plugin marketplace update freax-agent-skills
+/plugin update sync-ai-instructions@freax-agent-skills
 /reload-plugins
 ```
 

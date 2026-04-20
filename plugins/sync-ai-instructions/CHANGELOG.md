@@ -19,7 +19,7 @@ If you had the old plugin installed:
 ```
 /plugin uninstall init-instructions@freax-claude-code-plugins
 /plugin marketplace add freaxnx01/agent-skills
-/plugin install sync-ai-instructions@agent-skills
+/plugin install sync-ai-instructions@freax-agent-skills
 /reload-plugins
 ```
 

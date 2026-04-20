@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "agent-skills",
+  "name": "freax-agent-skills",
   "description": "Public Claude Code plugin marketplace by freaxnx01 — sharable, non-personal skills.",
   "owner": {
     "name": "freaxnx01"
