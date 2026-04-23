@@ -9,12 +9,14 @@ Marketplace name inside `.claude-plugin/marketplace.json`: **`freax-agent-skills
 | Plugin | Description |
 |---|---|
 | [`sync-ai-instructions`](./plugins/sync-ai-instructions) | Initialize or update a project's AI agent instruction files (`CLAUDE.md`, Copilot, `SKILL.md`, `.ai/*`) from [`freaxnx01/ai-instructions`](https://github.com/freaxnx01/ai-instructions). Idempotent — safe for first-time setup and for re-runs to keep files in sync. |
+| [`propose-ai-instructions`](./plugins/propose-ai-instructions) | Reverse direction. Scans the current project (v1: `Makefile` for the `dotnet` stack), classifies entries as generic-enough-to-promote vs. project-specific, and writes a reviewable proposal patch for [`freaxnx01/ai-instructions`](https://github.com/freaxnx01/ai-instructions). Never commits or pushes upstream. |
 
 ## Install
 
 ```bash
 /plugin marketplace add freaxnx01/agent-skills
 /plugin install sync-ai-instructions@freax-agent-skills
+/plugin install propose-ai-instructions@freax-agent-skills
 /reload-plugins
 ```
 
@@ -23,6 +25,7 @@ Marketplace name inside `.claude-plugin/marketplace.json`: **`freax-agent-skills
 ```bash
 /plugin marketplace update freax-agent-skills
 /plugin update sync-ai-instructions@freax-agent-skills
+/plugin update propose-ai-instructions@freax-agent-skills
 /reload-plugins
 ```
 

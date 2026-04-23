@@ -10,6 +10,11 @@
       "name": "sync-ai-instructions",
       "description": "Initialize or update a project's AI agent instruction files (CLAUDE.md, .github/copilot-instructions.md, SKILL.md, .ai/*) by pulling base + one stack overlay from github.com/freaxnx01/ai-instructions. Idempotent — works for first-time setup and re-runs to keep files in sync.",
       "source": "./plugins/sync-ai-instructions"
+    },
+    {
+      "name": "propose-ai-instructions",
+      "description": "Reverse of sync-ai-instructions. Scans the current project for stack-specific conventions (v1: Makefile targets for the dotnet stack), classifies each as generic-enough-to-promote vs. project-specific, and writes a reviewable proposal patch for github.com/freaxnx01/ai-instructions. Never commits or pushes upstream — output is a proposal file the user reviews and lands manually.",
+      "source": "./plugins/propose-ai-instructions"
     }
   ]
 }

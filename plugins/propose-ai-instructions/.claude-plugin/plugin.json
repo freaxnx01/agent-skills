@@ -1,0 +1,8 @@
+{
+  "name": "propose-ai-instructions",
+  "version": "0.1.0",
+  "description": "Reverse of sync-ai-instructions. Scans the current project for stack-specific conventions (v1: Makefile targets for the dotnet stack), classifies each as generic-enough-to-promote vs. project-specific, and writes a reviewable proposal patch for github.com/freaxnx01/ai-instructions. Never commits or pushes upstream — output is a proposal file the user reviews and lands manually.",
+  "author": {
+    "name": "freaxnx01"
+  }
+}
