@@ -1,0 +1,8 @@
+{
+  "name": "delegate-to-github-ai",
+  "version": "0.1.0",
+  "description": "Hand a coding task off to a GitHub AI assignee (Copilot or Claude) by creating a self-contained issue brief and assigning it to the right bot. Includes a pre-flight check, a delegate-vs-keep-local decision aid, an issue-body template with the sections AI agents actually need, and follow-up etiquette for the resulting draft PR.",
+  "author": {
+    "name": "freaxnx01"
+  }
+}
