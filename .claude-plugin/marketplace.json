@@ -15,11 +15,6 @@
       "name": "propose-ai-instructions",
       "description": "Reverse of sync-ai-instructions. Scans the current project for stack-specific conventions (v1: Makefile targets for the dotnet stack), classifies each as generic-enough-to-promote vs. project-specific, and writes a reviewable proposal patch for github.com/freaxnx01/ai-instructions. Never commits or pushes upstream — output is a proposal file the user reviews and lands manually.",
       "source": "./plugins/propose-ai-instructions"
-    },
-    {
-      "name": "delegate-to-github-ai",
-      "description": "Hand a coding task off to a GitHub AI assignee (Copilot or Claude) by creating a self-contained issue brief and assigning it to the right bot. Includes pre-flight check, delegate-vs-keep-local decision aid, the issue-body template AI agents behave best on, the exact gh issue create invocation, and follow-up etiquette for the resulting draft PR.",
-      "source": "./plugins/delegate-to-github-ai"
     }
   ]
 }
