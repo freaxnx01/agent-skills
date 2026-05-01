@@ -5,6 +5,12 @@ All notable changes to `sync-ai-instructions` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] — 2026-05-01
+
+### Fixed
+
+- The available-stacks listing (used in the no-argument flow and to validate `$ARGUMENTS`) now filters out directory entries and underscore-prefixed files. Previously, after the `ai-instructions` repo gained `.ai/stacks/_partials/` and `.ai/stacks/_layers/` for stack composition, those directories appeared in the list as if they were selectable stacks. The new `jq` filter keeps only `*.md` files whose names don't start with `_`, and strips the `.md` suffix so output is the bare stack name (e.g. `dotnet-webapi`).
+
 ## [0.2.0] — 2026-04-20
 
 ### Changed

@@ -46,9 +46,9 @@ Resolve the stack in this order:
    - More than one file → stop and ask the user to remove the stale ones. A project should carry exactly one stack overlay.
 3. **Still nothing resolved** (first-time init, no argument): fetch the list of available stacks and ask the user which one to use.
 
-Available-stacks command (use either):
-- `gh api repos/freaxnx01/ai-instructions/contents/.ai/stacks --jq '.[].name'`
-- `curl -s https://api.github.com/repos/freaxnx01/ai-instructions/contents/.ai/stacks | jq -r '.[].name'`
+Available-stacks command (use either). The filter excludes directories (`_partials/`, `_layers/`) and any underscore-prefixed entries — those are composition sources, not consumable overlays:
+- `gh api repos/freaxnx01/ai-instructions/contents/.ai/stacks --jq '.[] | select(.type == "file" and (.name | endswith(".md")) and (.name | startswith("_") | not)) | .name | rtrimstr(".md")'`
+- `curl -s https://api.github.com/repos/freaxnx01/ai-instructions/contents/.ai/stacks | jq -r '.[] | select(.type == "file" and (.name | endswith(".md")) and (.name | startswith("_") | not)) | .name | rtrimstr(".md")'`
 
 If the user (or `$ARGUMENTS`) names a stack that does not exist in the source repo, stop and tell them — do not silently fall back. Offer: "Create `stacks/<name>.md` in the ai-instructions repo first, then re-run."
 
