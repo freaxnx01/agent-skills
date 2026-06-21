@@ -157,6 +157,22 @@ The standard (each hook, the Docker caveat, the CI invocation) is documented in
 project already has these files, show a diff rather than clobbering local tuning.
 This step is skippable on request (e.g. a repo that deliberately opts out).
 
+**For .NET projects** (the chosen stack from Step 1 is a `dotnet-*` stack), also
+seed the .NET quality-gate config from `templates/dotnet/` so the project gets
+the complexity / coupling / method-length / mutation gates:
+
+- `.../templates/dotnet/Directory.Build.props` → `Directory.Build.props`
+- `.../templates/dotnet/.editorconfig` → `.editorconfig` (merge if one exists)
+- `.../templates/dotnet/CodeMetricsConfig.txt` → `CodeMetricsConfig.txt`
+- `.../templates/dotnet/stryker-config.json` → `stryker-config.json`
+- `.../templates/dotnet/quality.yml` → `.github/workflows/quality.yml`
+
+The threshold values are the single source of truth in those files; the standard
+and the "what lives where" map are in `.ai/references/dotnet/quality-gates.md`.
+Tell the user to fill `solution`/`test-project` in `quality.yml`, and that
+existing codebases adopt the strict thresholds incrementally (see the doc).
+Legacy .NET Framework 4.8 trees opt out via `<QualityGatesOptOut>true</...>`.
+
 ### Step 7 — Report
 
 Print a summary of files written, the stack chosen, and the commit SHA of `ai-instructions` that was fetched (from `gh api repos/freaxnx01/ai-instructions/commits/main --jq .sha`). The user will commit the changes themselves — do not commit automatically.
