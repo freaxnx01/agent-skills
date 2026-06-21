@@ -5,6 +5,12 @@ All notable changes to `sync-ai-instructions` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] — 2026-06-21
+
+### Added
+
+- **Seed the polyglot pre-commit lint config (Step 6).** Sync now also pulls `templates/pre-commit/.pre-commit-config.yaml`, `.yamllint`, and `.markdownlint-cli2.yaml` from `ai-instructions` into the target project root, so every repo gets the same single `pre-commit` gate (actionlint, yamllint, shellcheck, ruff, markdownlint, hadolint, typos, gitleaks, hygiene) locally and in CI. Existing copies are diffed, not clobbered; the step is skippable for repos that opt out. The standard is documented in `ai-instructions/.ai/references/base/polyglot-lint.md`.
+
 ## [0.2.1] — 2026-05-01
 
 ### Fixed

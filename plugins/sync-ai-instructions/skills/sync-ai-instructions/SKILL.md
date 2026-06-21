@@ -137,7 +137,27 @@ Headers:
 
 If the target project has no `CHANGELOG.md`, create one with the Keep a Changelog header and an empty `[Unreleased]` section. If it has no `cliff.toml`, suggest running `git cliff --init` separately.
 
-### Step 6 — Report
+### Step 6 — Seed the polyglot lint config (pre-commit)
+
+The `ai-instructions` repo carries a stack-agnostic **polyglot lint gate** under
+`templates/pre-commit/` (a single `pre-commit` config covering YAML, shell,
+Markdown, JSON, Dockerfiles and Python). Seed it into the target project root so
+every repo lints the same way locally and in CI.
+
+Fetch and write these to the **repo root** (do not overwrite existing copies
+without showing a diff first):
+
+- `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/templates/pre-commit/.pre-commit-config.yaml` → `.pre-commit-config.yaml`
+- `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/templates/pre-commit/.yamllint` → `.yamllint`
+- `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/templates/pre-commit/.markdownlint-cli2.yaml` → `.markdownlint-cli2.yaml`
+
+The standard (each hook, the Docker caveat, the CI invocation) is documented in
+`.ai/references/base/polyglot-lint.md`. Tell the user to run
+`pre-commit install` once and `pre-commit run --all-files` to adopt it; if a
+project already has these files, show a diff rather than clobbering local tuning.
+This step is skippable on request (e.g. a repo that deliberately opts out).
+
+### Step 7 — Report
 
 Print a summary of files written, the stack chosen, and the commit SHA of `ai-instructions` that was fetched (from `gh api repos/freaxnx01/ai-instructions/commits/main --jq .sha`). The user will commit the changes themselves — do not commit automatically.
 
