@@ -1,7 +1,7 @@
 {
   "name": "sync-ai-instructions",
-  "version": "0.2.0",
-  "description": "Initialize or update a project's AI agent instruction files (CLAUDE.md, .github/copilot-instructions.md, SKILL.md, .ai/*) by pulling base + one stack overlay from github.com/freaxnx01/ai-instructions. Idempotent — works for first-time setup and re-runs to keep files in sync.",
+  "version": "0.3.0",
+  "description": "Initialize or update a project's AI agent instruction files (CLAUDE.md, .github/copilot-instructions.md, SKILL.md, .ai/*) by pulling base + one stack overlay from github.com/freaxnx01/ai-instructions, and seed shared config templates (polyglot pre-commit gate + .NET quality gates). Idempotent — works for first-time setup and re-runs to keep files in sync.",
   "author": {
     "name": "freaxnx01"
   }
