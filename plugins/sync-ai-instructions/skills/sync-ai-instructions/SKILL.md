@@ -26,8 +26,12 @@ The source repository is `github.com/freaxnx01/ai-instructions`. Its shape:
     <stack>.md                             ← one file per supported stack
   skills/
     commit.md · push.md
-    ui-brainstorm.md · ui-flow.md · ui-build.md · ui-review.md
 ```
+
+> The four-phase UI workflow (`/ui:brainstorm` → `/ui:flow` → `/ui:build` →
+> `/ui:review`) is **no longer synced from here**. It ships from the global
+> `agent-workflow` console, installed once into `~/.claude/commands/ui/`, and is
+> available in every repo without a per-project sync.
 
 A project consumes **base + exactly one stack overlay**. That is what keeps an agent's context clean: a Flutter project never sees .NET content, and vice versa.
 
@@ -62,10 +66,6 @@ For the chosen stack `<name>`, fetch these raw files from `main`:
 - `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/.ai/stacks/<name>.md`
 - `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/.ai/skills/commit.md`
 - `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/.ai/skills/push.md`
-- `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/.ai/skills/ui-brainstorm.md`
-- `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/.ai/skills/ui-flow.md`
-- `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/.ai/skills/ui-build.md`
-- `https://raw.githubusercontent.com/freaxnx01/ai-instructions/main/.ai/skills/ui-review.md`
 
 Use `curl -sSfL -o <path> <url>` or WebFetch.
 
@@ -80,12 +80,10 @@ Create these files in the current working directory (the target project):
     <stack>.md                             ← only the chosen stack
   skills/
     commit.md push.md
-    ui-brainstorm.md ui-flow.md ui-build.md ui-review.md
 
 .claude/
   commands/
     commit.md push.md
-    ui-brainstorm.md ui-flow.md ui-build.md ui-review.md
 
 CLAUDE.md                                 ← assembled: base + stacks/<stack>.md (see Step 4)
 .github/copilot-instructions.md           ← same assembled content, tool-specific framing
@@ -95,6 +93,8 @@ SKILL.md                                  ← same assembled content, OpenClaw f
 The target project gets exactly **one stack** under `.ai/stacks/`. That is the whole point — no other stacks land on disk, so they never enter any agent's context.
 
 Note: `/sync-ai-instructions` and `/release-notes` are **no longer** copied into the target project's `.claude/commands/` or `.ai/skills/`. They live as standalone plugins in the marketplace and are available globally once installed. Remove any stale `.claude/commands/init-instructions.md`, `.claude/commands/sync-ai-instructions.md`, `.claude/commands/release-notes.md`, `.ai/skills/init-instructions.md`, `.ai/skills/sync-ai-instructions.md`, or `.ai/skills/release-notes.md` you find during an update run.
+
+The four-phase UI workflow moved to the global `agent-workflow` console. Remove any stale per-project copies during an update run: `.ai/skills/ui-brainstorm.md`, `.ai/skills/ui-flow.md`, `.ai/skills/ui-build.md`, `.ai/skills/ui-review.md`, and the matching `.claude/commands/ui-*.md`. The workflow is now invoked as `/ui:brainstorm` … `/ui:review` from `~/.claude/commands/ui/`.
 
 ### Step 4 — Assemble CLAUDE.md / copilot / SKILL
 
