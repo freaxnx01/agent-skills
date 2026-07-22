@@ -5,6 +5,16 @@ All notable changes to `sync-ai-instructions` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] — 2026-06-21
+
+### Added
+
+- **Seed shared config templates (Step 6).** Sync now also pulls config templates from `ai-instructions` into the target project:
+  - **Polyglot pre-commit gate** (all repos): `templates/pre-commit/.pre-commit-config.yaml`, `.yamllint`, `.markdownlint-cli2.yaml` → repo root, so every repo runs the same `pre-commit` gate (actionlint, yamllint, shellcheck, ruff, markdownlint, hadolint, typos, gitleaks, hygiene) locally and in CI. Standard: `.ai/references/base/polyglot-lint.md`.
+  - **.NET quality gates** (`dotnet-*` stacks): `templates/dotnet/Directory.Build.props`, `.editorconfig`, `CodeMetricsConfig.txt`, `stryker-config.json`, and `quality.yml` → repo root + `.github/workflows/`. Standard: `.ai/references/dotnet/quality-gates.md`.
+
+  Existing copies are diffed, not clobbered; the step is skippable for repos that opt out.
+
 ## [0.2.1] — 2026-05-01
 
 ### Fixed

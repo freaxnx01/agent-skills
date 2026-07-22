@@ -1,0 +1,8 @@
+{
+  "name": "release-notes",
+  "version": "0.1.0",
+  "description": "Generate user-friendly RELEASENOTES.md entries for missing versions from git tags, grouped by theme (New Features / Improvements / Bug Fixes).",
+  "author": {
+    "name": "freaxnx01"
+  }
+}
