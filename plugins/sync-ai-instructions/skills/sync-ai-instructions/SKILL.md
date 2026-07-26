@@ -69,6 +69,12 @@ For the chosen stack `<name>`, fetch these raw files from `main`:
 
 Use `curl -sSfL -o <path> <url>` or WebFetch.
 
+The `ui-*` skills are **not** fetched: the four UI-phase commands
+(`/ui:brainstorm`, `/ui:flow`, `/ui:build`, `/ui:review`) now ship from the
+global operator console (`agent-workflow`) into `~/.claude/commands/ui/` and
+were removed from `ai-instructions/.ai/skills/` on 2026-07-22. Fetching them
+404s. See Step 3 for removing stale per-project copies.
+
 ### Step 3 — Write files into the target project
 
 Create these files in the current working directory (the target project):
@@ -185,4 +191,14 @@ Print a summary of files written, the stack chosen, and the commit SHA of `ai-in
 - Never write files outside the current working directory
 - Never overwrite `CLAUDE.md` / `copilot-instructions.md` / `SKILL.md` without showing a diff first if they already exist
 - If the fetch fails (network, missing stack), stop and report — do not fall back to stale local copies
-- Do not commit the changes — leave that to the user
+- Do not commit the changes — leave that to the user, **unless** this is an
+  explicit bulk run across many repos, where the user has approved
+  commit-and-push per repo up front
+
+---
+
+If you run into blockers, find a solution and update this skill for the future.
+A 404 on a fetched file usually means the upstream `ai-instructions` layout
+moved — check the current tree
+(`gh api repos/freaxnx01/ai-instructions/git/trees/main?recursive=1`) and fix
+the Step 2 list here rather than working around it inline.
