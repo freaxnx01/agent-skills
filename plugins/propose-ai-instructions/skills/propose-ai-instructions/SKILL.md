@@ -109,7 +109,18 @@ For OS-split recipes (`[unix]` + `[windows]` of the same name), evaluate each bo
 
 For each decision, record: **recipe name**, **verdict**, **one-line reason**, **source line number(s)** (one per OS variant if applicable).
 
-### Step 5 — Build the proposal, don't just diff
+### Step 5 — Transitive dependency check
+
+Step 4 classifies each recipe from its own body alone, which misses recipes that only *compose* other recipes. Build the recipe dependency graph before finalizing verdicts:
+
+- **Native prerequisites** — the recipe header's dependency list, e.g. `run: stop` (recipe `run` depends on `stop`).
+- **Explicit invocations** — `just <name>` calls inside a recipe body.
+
+For every recipe classified `promote` in Step 4, walk its dependencies (direct and transitive). If it depends on any recipe classified `exclude`, **downgrade the verdict to `review`** with reason `transitive dep on excluded <name>` (`<name>` is the nearest excluded dependency found). Leave `exclude` and `review` verdicts from Step 4 untouched.
+
+Record downgrades the same way as any other verdict (recipe name, verdict, reason, source line number(s)).
+
+### Step 6 — Build the proposal, don't just diff
 
 The proposal is **a whole new section** (e.g. `## Essential just Recipes`) that standardizes recipe names for the stack, not a cherry-picked list of "commands upstream is missing". Keep every `promote` recipe in the proposal even if the underlying command is already listed in the upstream `## Essential Commands` — the value is the standardized recipe name, not the novelty of the command.
 
@@ -120,7 +131,7 @@ Only drop a recipe from the proposal if:
 
 In practice, almost everything in the `promote` set survives.
 
-### Step 6 — Write the proposal
+### Step 7 — Write the proposal
 
 Write `docs/ai-notes/upstream-proposal-<YYYY-MM-DD>.md` in the target project with:
 
@@ -130,7 +141,7 @@ Write `docs/ai-notes/upstream-proposal-<YYYY-MM-DD>.md` in the target project wi
 4. **Excluded items** — full list with reason, so the user can override any misclassification.
 5. **How to land this** — step-by-step: clone `freaxnx01/ai-instructions`, create branch `feat/<stack>-just-recipes` (or equivalent for the category), paste the proposed section into the `upstream_file` path under `## Essential Commands`, run `./scripts/build-stacks.sh` if the file is a `_partials/*.md` source, commit with Conventional Commits, open PR.
 
-### Step 7 — Report
+### Step 8 — Report
 
 Print:
 
