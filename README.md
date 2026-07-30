@@ -13,8 +13,9 @@ This repo ships **Claude Code plugins**, installed per-machine via `/plugin mark
 | Plugin | Description |
 |---|---|
 | [`sync-ai-instructions`](./plugins/sync-ai-instructions) | Initialize or update a project's AI agent instruction files (`CLAUDE.md`, Copilot, `SKILL.md`, `.ai/*`) from [`freaxnx01/ai-instructions`](https://github.com/freaxnx01/ai-instructions). Idempotent — safe for first-time setup and for re-runs to keep files in sync. |
-| [`propose-ai-instructions`](./plugins/propose-ai-instructions) | Reverse direction. Scans the current project (v1: `Makefile` for the `dotnet` stack), classifies entries as generic-enough-to-promote vs. project-specific, and writes a reviewable proposal patch for [`freaxnx01/ai-instructions`](https://github.com/freaxnx01/ai-instructions). Never commits or pushes upstream. |
+| [`propose-ai-instructions`](./plugins/propose-ai-instructions) | Reverse direction. Scans the current project (v1: `justfile` recipes for the `dotnet` stack), classifies entries as generic-enough-to-promote vs. project-specific, and writes a reviewable proposal patch for [`freaxnx01/ai-instructions`](https://github.com/freaxnx01/ai-instructions). Never commits or pushes upstream. |
 | [`release-notes`](./plugins/release-notes) | Generate user-friendly `RELEASENOTES.md` entries from git tags and commit history, grouped by "New Features" / "Improvements" / "Bug Fixes". Append-only; distinct from the developer-facing, Conventional-Commit-generated `CHANGELOG.md`. |
+| [`hermes-tweet`](./plugins/hermes-tweet) | Guide Claude Code users operating Hermes Agent through read-first X/Twitter research and approval-gated actions with Hermes Tweet. |
 
 ## Install
 
@@ -23,6 +24,7 @@ This repo ships **Claude Code plugins**, installed per-machine via `/plugin mark
 /plugin install sync-ai-instructions@freax-agent-skills
 /plugin install propose-ai-instructions@freax-agent-skills
 /plugin install release-notes@freax-agent-skills
+/plugin install hermes-tweet@freax-agent-skills
 /reload-plugins
 ```
 
@@ -33,6 +35,7 @@ This repo ships **Claude Code plugins**, installed per-machine via `/plugin mark
 /plugin update sync-ai-instructions@freax-agent-skills
 /plugin update propose-ai-instructions@freax-agent-skills
 /plugin update release-notes@freax-agent-skills
+/plugin update hermes-tweet@freax-agent-skills
 /reload-plugins
 ```
 

@@ -174,6 +174,9 @@ project_markers:
     context: always
 
   # Hardcoded endpoints / ports in critical paths (probing is fine when parametrized)
+  - pattern: 'https?://(localhost|127\.0\.0\.1|0\.0\.0\.0):\d+'
+    reason: hardcoded localhost port — project-specific (use a variable)
+    context: always
   - pattern: 'https?://(?!localhost|127\.0\.0\.1|0\.0\.0\.0)[a-z0-9.-]+\.(com|ch|net|io|dev|internal)'
     reason: hardcoded non-localhost URL
     context: always
@@ -188,7 +191,9 @@ The `context` field controls when the marker applies:
 
 - `{{var}}` — any justfile variable interpolation. Variables are how projects parametrize; their presence is fine.
 - `$VAR` / `${VAR}` — shell variable inside a bash/pwsh recipe body. Fine.
-- `localhost` / `127.0.0.1` / `0.0.0.0` in URLs — local-only, every project has some of these.
+- `localhost` / `127.0.0.1` / `0.0.0.0` in URLs without literal ports —
+  local-only. Ports supplied through `{{var}}`, `$VAR`, or `${VAR}` stay
+  reusable.
 - `pwsh` / PowerShell built-ins inside a `[windows]` recipe — see `windows_tools` above.
 - Environment variable names that look project-specific (`InternalSettings__Foo`) — the name alone doesn't disqualify, but if it appears hardcoded in a recipe body (not as `{{var}}` or `$VAR`) it does. Flagged via `project_env_prefix` below.
 

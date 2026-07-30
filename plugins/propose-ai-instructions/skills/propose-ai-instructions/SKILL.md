@@ -1,6 +1,12 @@
 ---
 name: propose-ai-instructions
-description: Reverse of /sync-ai-instructions. Analyze the current project for stack-specific conventions (currently: justfile recipes for the dotnet stack) and propose which entries are generic enough to be promoted upstream to github.com/freaxnx01/ai-instructions. Writes a reviewable proposal file with a classified diff; never commits or pushes upstream. Use when the user wants to harvest local conventions that have proven useful and could benefit other projects using the same stack overlay. Triggers include "propose ai-instructions", "upstream my justfile", "what should go upstream", or running /propose-ai-instructions. Run from the target project's working directory.
+description: >-
+  Reverse of /sync-ai-instructions. Analyze the current project for
+  stack-specific conventions, currently justfile recipes for the dotnet stack,
+  and propose generic entries for github.com/freaxnx01/ai-instructions. Write a
+  reviewable classified diff without committing or pushing upstream. Use when
+  the user asks to propose AI instructions, upstream a justfile, identify
+  reusable conventions, or run /propose-ai-instructions.
 ---
 
 # Propose AI Instructions — Harvest local conventions for upstream promotion

@@ -1,0 +1,8 @@
+{
+  "name": "hermes-tweet",
+  "version": "0.1.11",
+  "description": "Guide Claude Code users operating Hermes Agent through read-first X/Twitter research and approval-gated actions with Hermes Tweet.",
+  "author": {
+    "name": "Xquik"
+  }
+}
