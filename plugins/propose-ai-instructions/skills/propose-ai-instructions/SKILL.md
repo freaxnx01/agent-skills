@@ -116,7 +116,7 @@ Step 4 classifies each recipe from its own body alone, which misses recipes that
 - **Native prerequisites** — the recipe header's dependency list, e.g. `run: stop` (recipe `run` depends on `stop`).
 - **Explicit invocations** — `just <name>` calls inside a recipe body.
 
-For every recipe classified `promote` in Step 4, walk its dependencies (direct and transitive). If it depends on any recipe classified `exclude`, **downgrade the verdict to `review`** with reason `transitive dep on excluded <name>` (`<name>` is the nearest excluded dependency found). Leave `exclude` and `review` verdicts from Step 4 untouched.
+For every recipe classified `promote` in Step 4, walk its dependencies (direct and transitive). Track visited recipes while walking to avoid infinite loops on cyclic references (e.g. `A -> B -> A`). If it depends on any recipe classified `exclude`, **downgrade the verdict to `review`** with reason `transitive dep on excluded <name>` (`<name>` is the nearest excluded dependency found). Leave `exclude` and `review` verdicts from Step 4 untouched.
 
 Record downgrades the same way as any other verdict (recipe name, verdict, reason, source line number(s)).
 
